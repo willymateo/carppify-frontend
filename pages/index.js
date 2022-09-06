@@ -29,7 +29,7 @@ const rows = [
   },
 ];
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -42,14 +42,27 @@ export default function Home() {
             <TableCell align="right">Type</TableCell>
             <TableCell align="right">Capacity</TableCell>
             <TableCell align="right">Creation Date</TableCell>
+            <TableCell align="right">Edit</TableCell>
+            <TableCell align="right">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <VehicleTableRow key={row.id} {...row} />
+          {data.map(vehicle => (
+            <VehicleTableRow key={vehicle.id} {...vehicle} />
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const res = await fetch(`http://localhost:3001/api/driver/10/vehicles`);
+    const data = await res.json();
+    return { props: { data } };
+  } catch (error) {
+    console.log(error);
+    return { props: { data: [] } };
+  }
 }
