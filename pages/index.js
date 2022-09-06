@@ -12,11 +12,12 @@ import { Footer } from "../components/Footer";
 import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
 export default function Home({ data }) {
   return (
-    <>
+    <Stack direction="column" justifyContent="space-between" flex={1} margin={2}>
       <Header />
 
       <Box>
@@ -51,7 +52,7 @@ export default function Home({ data }) {
       </Box>
 
       <Footer />
-    </>
+    </Stack>
   );
 }
 
