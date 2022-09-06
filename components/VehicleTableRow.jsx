@@ -10,18 +10,18 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
       <TableCell component="th" scope="row">
         {id}
       </TableCell>
-      <TableCell align="right">{driver_id}</TableCell>
-      <TableCell align="right">{plate}</TableCell>
-      <TableCell align="right">{model}</TableCell>
-      <TableCell align="right">{type}</TableCell>
-      <TableCell align="right">{capacity}</TableCell>
-      <TableCell align="right">{creation_date}</TableCell>
-      <TableCell align="right">
+      <TableCell align="center">{driver_id}</TableCell>
+      <TableCell align="center">{plate}</TableCell>
+      <TableCell align="center">{model}</TableCell>
+      <TableCell align="center">{type}</TableCell>
+      <TableCell align="center">{capacity}</TableCell>
+      <TableCell align="center">{creation_date}</TableCell>
+      <TableCell align="center">
         <IconButton>
           <EditIcon />
         </IconButton>
       </TableCell>
-      <TableCell align="right">
+      <TableCell align="center">
         <IconButton>
           <DeleteIcon />
         </IconButton>
