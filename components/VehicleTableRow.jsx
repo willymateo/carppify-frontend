@@ -1,16 +1,18 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
-function VehicleTableRow({ name, calories, fat, carbs, protein }) {
+function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation_date }) {
   return (
     <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
       <TableCell component="th" scope="row">
-        {name}
+        {id}
       </TableCell>
-      <TableCell align="right">{calories}</TableCell>
-      <TableCell align="right">{fat}</TableCell>
-      <TableCell align="right">{carbs}</TableCell>
-      <TableCell align="right">{protein}</TableCell>
+      <TableCell align="right">{driver_id}</TableCell>
+      <TableCell align="right">{plate}</TableCell>
+      <TableCell align="right">{model}</TableCell>
+      <TableCell align="right">{type}</TableCell>
+      <TableCell align="right">{capacity}</TableCell>
+      <TableCell align="right">{creation_date}</TableCell>
     </TableRow>
   );
 }
