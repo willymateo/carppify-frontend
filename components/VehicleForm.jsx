@@ -1,5 +1,7 @@
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import RememberMeIcon from "@mui/icons-material/RememberMe";
 import { useSelector, useDispatch } from "react-redux";
+import NumbersIcon from "@mui/icons-material/Numbers";
 import { setVehicle } from "../redux/states/vehicle";
 import {
   Radio,
@@ -12,7 +14,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-function EditVehicleForm() {
+function VehicleForm() {
   const dispatch = useDispatch();
   const { driver_id, plate, model, type, capacity } = useSelector(state => state.vehicle);
 
@@ -42,7 +44,7 @@ function EditVehicleForm() {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <RememberMeIcon />
+              <NumbersIcon />
             </InputAdornment>
           ),
         }}
@@ -55,7 +57,7 @@ function EditVehicleForm() {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <RememberMeIcon />
+              <LocalShippingIcon />
             </InputAdornment>
           ),
         }}
@@ -82,4 +84,4 @@ function EditVehicleForm() {
   );
 }
 
-export { EditVehicleForm };
+export { VehicleForm };

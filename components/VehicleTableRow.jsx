@@ -2,9 +2,9 @@ import { resetVehicle, setVehicle } from "../redux/states/vehicle";
 import { deleteVehicle, editVehicle } from "../services/vehicles";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { EditVehicleForm } from "./EditVehicleForm";
 import { pink, cyan } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
+import { VehicleForm } from "./VehicleForm";
 import { useState } from "react";
 import {
   Alert,
@@ -23,13 +23,18 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
   const hideSnackBar = () => setSnakBarStatus({ ...snackBarStatus, open: false });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const vehicleData = useSelector(state => state.vehicle);
-  const hideDialog = () => setIsDialogOpen(false);
   const dispatch = useDispatch();
+
   const [snackBarStatus, setSnakBarStatus] = useState({
     open: false,
     message: "",
-    severity: "success",
+    severity: "",
   });
+
+  const hideDialog = () => {
+    dispatch(resetVehicle());
+    setIsDialogOpen(false);
+  };
 
   const onAcceptEdit = async () => {
     const res = await editVehicle(vehicleData);
@@ -47,11 +52,6 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
       message: res.message,
       severity: "success",
     });
-    hideDialog();
-  };
-
-  const onDiscardEdit = async () => {
-    dispatch(resetVehicle());
     hideDialog();
   };
 
@@ -99,14 +99,14 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
         </TableCell>
       </TableRow>
 
-      <Dialog open={isDialogOpen} onClose={onDiscardEdit} fullWidth>
+      <Dialog open={isDialogOpen} onClose={hideDialog} fullWidth>
         <DialogTitle>Edit Vehicle with ID:{id}</DialogTitle>
         <DialogContent>
-          <EditVehicleForm />
+          <VehicleForm />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onAcceptEdit}>Accept</Button>
-          <Button onClick={onDiscardEdit}>Discard</Button>
+          <Button onClick={hideDialog}>Discard</Button>
+          <Button variant="contained" onClick={onAcceptEdit}>Edit vehicle</Button>
         </DialogActions>
       </Dialog>
 
