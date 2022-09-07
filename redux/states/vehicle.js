@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const emptyState = {
+  id: null,
   driver_id: null,
   plate: "",
   model: "",

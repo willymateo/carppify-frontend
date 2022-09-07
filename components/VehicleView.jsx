@@ -1,5 +1,0 @@
-function EditView() {
-
-}
-
-export { EditView };

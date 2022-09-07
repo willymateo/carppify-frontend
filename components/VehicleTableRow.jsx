@@ -1,23 +1,38 @@
+import { resetVehicle, setVehicle } from "../redux/states/vehicle";
 import { deleteVehicle, editVehicle } from "../services/vehicles";
+import { useDispatch, useSelector } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { EditVehicleForm } from "./EditVehicleForm";
 import { pink, cyan } from "@mui/material/colors";
-import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import { useState } from "react";
+import {
+  Alert,
+  Button,
+  Dialog,
+  TableRow,
+  Snackbar,
+  TableCell,
+  DialogTitle,
+  IconButton,
+  DialogActions,
+  DialogContent,
+} from "@mui/material";
 
 function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation_date }) {
+  const hideSnackBar = () => setSnakBarStatus({ ...snackBarStatus, open: false });
+  const hideDialog = () => setDialogStatus({ ...dialogStatus, open: false });
+  const [dialogStatus, setDialogStatus] = useState({ open: false, title: "" });
+  const vehicleData = useSelector(state => state.vehicle);
+  const dispatch = useDispatch();
   const [snackBarStatus, setSnakBarStatus] = useState({
     open: false,
     message: "",
     severity: "success",
   });
 
-  const onClickEdit = async () => {
-    const res = await editVehicle({ id });
+  const onAcceptEdit = async () => {
+    const res = await editVehicle(vehicleData);
     if (res.error) {
       setSnakBarStatus({
         open: true,
@@ -26,10 +41,25 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
       });
       return;
     }
+    dispatch(resetVehicle());
     setSnakBarStatus({
       open: true,
       message: res.message,
       severity: "success",
+    });
+    hideDialog();
+  };
+
+  const onDiscardEdit = async () => {
+    dispatch(resetVehicle());
+    hideDialog();
+  };
+
+  const onClickEdit = async () => {
+    dispatch(setVehicle({ id, driver_id, plate, model, type, capacity }));
+    setDialogStatus({
+      open: true,
+      title: "Edit Vehicle",
     });
   };
 
@@ -48,10 +78,6 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
       message: res.message,
       severity: "warning",
     });
-  };
-
-  const hideSnackBar = () => {
-    setSnakBarStatus({ ...snackBarStatus, open: false });
   };
 
   return (
@@ -75,6 +101,18 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
           </IconButton>
         </TableCell>
       </TableRow>
+
+      <Dialog open={dialogStatus.open} onClose={hideDialog} fullWidth>
+        <DialogTitle>{dialogStatus.title}</DialogTitle>
+        <DialogContent>
+          <EditVehicleForm />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onAcceptEdit}>Accept</Button>
+          <Button onClick={onDiscardEdit}>Discard</Button>
+        </DialogActions>
+      </Dialog>
+
       <Snackbar onClose={hideSnackBar} autoHideDuration={10000} open={snackBarStatus.open}>
         <Alert onClose={hideSnackBar} severity={snackBarStatus.severity}>
           {snackBarStatus.message}
