@@ -1,6 +1,5 @@
 import { VehicleTableRow } from "../components/VehicleTableRow";
 import TableContainer from "@mui/material/TableContainer";
-import { SearchBar } from "../components/SearchBar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import TableBody from "@mui/material/TableBody";
@@ -9,13 +8,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import Button from "@mui/material/Button";
+import { useSelector } from "react-redux";
 import Table from "@mui/material/Table";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
 export default function Home({ data }) {
+  const { driver_id } = useSelector(state => state.search);
+
   return (
     <Stack direction="column" justifyContent="space-between" flex={1} margin={2}>
       <Header />
@@ -23,7 +24,7 @@ export default function Home({ data }) {
       <Box>
         <Container>
           <Typography variant="h4" textAlign="center">
-            Vehicles by Driver ID
+            {driver_id ? `Vehicles of driver with ID: ${driver_id}` : "Vehicles by Driver ID"}
           </Typography>
         </Container>
 
