@@ -1,6 +1,5 @@
 import { VehicleTableRow } from "../components/VehicleTableRow";
 import TableContainer from "@mui/material/TableContainer";
-import { getAllVehicles } from "../services/driver";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import TableBody from "@mui/material/TableBody";
@@ -9,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Table from "@mui/material/Table";
 import Paper from "@mui/material/Paper";
@@ -17,17 +15,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
 export default function Home() {
-  const { driver_id } = useSelector(state => state.search);
-  const [vehicles, setVehicles] = useState([]);
-
-  useEffect(() => {
-    if (driver_id) {
-      (async () => {
-        const vehicles = await getAllVehicles(driver_id);
-        setVehicles(vehicles);
-      })();
-    }
-  }, [driver_id]);
+  const { driver_id, vehicles } = useSelector(state => state.driver);
 
   return (
     <Stack direction="column" justifyContent="space-between" flex={1} margin={2}>

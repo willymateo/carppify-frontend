@@ -1,10 +1,10 @@
 import { ColorModeReducer } from "./states/colorMode";
 import { configureStore } from "@reduxjs/toolkit";
-import { SearchReducer } from "./states/search";
+import { DriverReducer } from "./states/driver";
 
 const reduxStore = configureStore({
   reducer: {
-    search: SearchReducer,
+    driver: DriverReducer,
     colorMode: ColorModeReducer,
   },
 });
