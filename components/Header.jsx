@@ -1,6 +1,7 @@
 import { resetVehicle } from "../redux/states/vehicle";
 import { useDispatch, useSelector } from "react-redux";
 import { createVehicle } from "../services/vehicles";
+import { SwitchColorMode } from "./SwitchColorMode";
 import { getAllVehicles } from "../services/driver";
 import { setDriver } from "../redux/states/driver";
 import { VehicleForm } from "./VehicleForm";
@@ -30,7 +31,7 @@ function Header() {
   const [snackBarStatus, setSnakBarStatus] = useState({
     open: false,
     message: "",
-    severity: "",
+    severity: "success",
   });
 
   const hideDialog = () => {
@@ -77,9 +78,12 @@ function Header() {
           Carppify
         </Typography>
         <SearchBar />
-        <Button variant="contained" onClick={showDialog}>
-          Add vehicle
-        </Button>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Button variant="contained" onClick={showDialog}>
+            Add vehicle
+          </Button>
+          <SwitchColorMode />
+        </Stack>
       </Stack>
 
       <Dialog open={isDialogOpen} onClose={hideDialog} fullWidth>
