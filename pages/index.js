@@ -16,6 +16,7 @@ import {
   Typography,
   TableContainer,
 } from "@mui/material";
+import { CompanyInfoCard } from "../components/CompanyInfoCard";
 
 export default function Home() {
   const { id: driver_id, vehicles } = useSelector(state => state.driver);
@@ -23,12 +24,15 @@ export default function Home() {
   return (
     <Stack direction="column" justifyContent="space-between" flex={1} margin={2}>
       <Header />
-      <Box marginY={5}>
+      <Box marginY={4}>
         {driver_id ? (
           <>
-            <DriverInfoCard />
+            <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-around">
+              <DriverInfoCard />
+              <CompanyInfoCard />
+            </Stack>
             <Container>
-              <Typography variant="h4" textAlign="center">
+              <Typography variant="h4" textAlign="center" marginTop={4}>
                 Vehicles Info
               </Typography>
             </Container>
