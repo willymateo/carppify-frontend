@@ -1,5 +1,5 @@
-import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
 import DialogContentText from "@mui/material/DialogContentText";
+import RememberMeIcon from "@mui/icons-material/RememberMe";
 import InputAdornment from "@mui/material/InputAdornment";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -17,18 +17,18 @@ import { useState } from "react";
 function SearchBar() {
   const dispatch = useDispatch();
   const [driverId, setDriverId] = useState("");
-
-  const [errorMessage, setErrorMessage] = useState("");
-  const hideErrorDialog = () => setIsVisibleError(false);
-  const [isVisibleError, setIsVisibleError] = useState(false);
-
   const onChangeTextField = ({ target: { value } }) => setDriverId(value);
+  const [dialogStatus, setDialogStatus] = useState({ open: false, error: "" });
+  const hideErrorDialog = () => setDialogStatus({ ...dialogStatus, open: false });
 
   const onClickSearch = async () => {
+    if (!driverId) {
+      setDialogStatus({ open: true, error: "Please enter a driver id" });
+      return;
+    }
     const vehicles = await getAllVehicles(driverId);
     if (vehicles.error) {
-      setIsVisibleError(true);
-      setErrorMessage(vehicles.error);
+      setDialogStatus({ open: true, error: vehicles.error });
       return;
     }
     dispatch(setDriver({ driver_id: driverId, vehicles }));
@@ -45,7 +45,7 @@ function SearchBar() {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <AirlineSeatReclineExtraIcon />
+                <RememberMeIcon />
               </InputAdornment>
             ),
           }}
@@ -54,10 +54,10 @@ function SearchBar() {
           Search
         </Button>
       </Stack>
-      <Dialog open={isVisibleError} onClose={hideErrorDialog} fullWidth>
+      <Dialog open={dialogStatus.open} onClose={hideErrorDialog} fullWidth>
         <DialogTitle>Error</DialogTitle>
         <DialogContent>
-          <DialogContentText>{errorMessage}</DialogContentText>
+          <DialogContentText>{dialogStatus.error}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={hideErrorDialog}>Close</Button>

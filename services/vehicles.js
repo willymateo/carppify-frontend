@@ -6,9 +6,9 @@ const createVehicle = async data =>
     .then(({ data }) => data)
     .catch(errorHandler);
 
-const editVehicle = async data =>
+const editVehicle = async ({id, data}) =>
   axiosCarppify
-    .put(`/vehicles/${vehile_id}`, data)
+    .put(`/vehicles/${id}`, data)
     .then(({ data }) => data)
     .catch(errorHandler);
 

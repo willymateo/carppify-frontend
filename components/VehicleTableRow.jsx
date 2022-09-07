@@ -17,7 +17,7 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
   });
 
   const onClickEdit = async () => {
-    const res = await editVehicle(id);
+    const res = await editVehicle({ id });
     if (res.error) {
       setSnakBarStatus({
         open: true,
@@ -46,7 +46,7 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
     setSnakBarStatus({
       open: true,
       message: res.message,
-      severity: "success",
+      severity: "warning",
     });
   };
 
@@ -75,8 +75,8 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
           </IconButton>
         </TableCell>
       </TableRow>
-      <Snackbar open={snackBarStatus.open} autoHideDuration={6000} onClose={hideSnackBar}>
-        <Alert onClose={hideSnackBar} severity={snackBarStatus.severity} sx={{ width: "100%" }}>
+      <Snackbar onClose={hideSnackBar} autoHideDuration={10000} open={snackBarStatus.open}>
+        <Alert onClose={hideSnackBar} severity={snackBarStatus.severity}>
           {snackBarStatus.message}
         </Alert>
       </Snackbar>
