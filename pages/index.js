@@ -35,7 +35,6 @@ export default function Home() {
             <TableHead>
               <TableRow>
                 <TableCell align="center">ID</TableCell>
-                <TableCell align="center">Driver ID</TableCell>
                 <TableCell align="center">Plate</TableCell>
                 <TableCell align="center">Model</TableCell>
                 <TableCell align="center">Type</TableCell>

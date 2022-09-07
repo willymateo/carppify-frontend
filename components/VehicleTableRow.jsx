@@ -98,7 +98,6 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
         <TableCell align="center">{id}</TableCell>
-        <TableCell align="center">{driver_id}</TableCell>
         <TableCell align="center">{plate}</TableCell>
         <TableCell align="center">{model}</TableCell>
         <TableCell align="center">{type}</TableCell>
