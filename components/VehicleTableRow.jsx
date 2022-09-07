@@ -21,9 +21,9 @@ import {
 
 function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation_date }) {
   const hideSnackBar = () => setSnakBarStatus({ ...snackBarStatus, open: false });
-  const hideDialog = () => setDialogStatus({ ...dialogStatus, open: false });
-  const [dialogStatus, setDialogStatus] = useState({ open: false, title: "" });
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const vehicleData = useSelector(state => state.vehicle);
+  const hideDialog = () => setIsDialogOpen(false);
   const dispatch = useDispatch();
   const [snackBarStatus, setSnakBarStatus] = useState({
     open: false,
@@ -57,10 +57,7 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
 
   const onClickEdit = async () => {
     dispatch(setVehicle({ id, driver_id, plate, model, type, capacity }));
-    setDialogStatus({
-      open: true,
-      title: "Edit Vehicle",
-    });
+    setIsDialogOpen(true);
   };
 
   const onClickDelete = async () => {
@@ -102,8 +99,8 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
         </TableCell>
       </TableRow>
 
-      <Dialog open={dialogStatus.open} onClose={hideDialog} fullWidth>
-        <DialogTitle>{dialogStatus.title}</DialogTitle>
+      <Dialog open={isDialogOpen} onClose={onDiscardEdit} fullWidth>
+        <DialogTitle>Edit Vehicle with ID:{id}</DialogTitle>
         <DialogContent>
           <EditVehicleForm />
         </DialogContent>
