@@ -1,6 +1,8 @@
 import { resetVehicle } from "../redux/states/vehicle";
 import { useDispatch, useSelector } from "react-redux";
 import { createVehicle } from "../services/vehicles";
+import { getAllVehicles } from "../services/driver";
+import { setDriver } from "../redux/states/driver";
 import { VehicleForm } from "./VehicleForm";
 import { SearchBar } from "./SearchBar";
 import "@fontsource/lobster/400.css";
@@ -22,6 +24,7 @@ function Header() {
   const showDialog = () => setIsDialogOpen(true);
   const vehicleData = useSelector(state => state.vehicle);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { driver_id } = useSelector(state => state.driver);
   const hideSnackBar = () => setSnakBarStatus({ ...snackBarStatus, open: false });
 
   const [snackBarStatus, setSnakBarStatus] = useState({
@@ -51,6 +54,20 @@ function Header() {
       severity: "success",
     });
     hideDialog();
+    await reloadTable();
+  };
+
+  const reloadTable = async () => {
+    const vehicles = await getAllVehicles(driver_id);
+    if (vehicles.error) {
+      setSnakBarStatus({
+        open: true,
+        message: vehicles.error,
+        severity: "error",
+      });
+      return;
+    }
+    dispatch(setDriver({ vehicles }));
   };
 
   return (
