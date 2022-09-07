@@ -1,3 +1,24 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "new-cap": ["error", { "capIsNew": false }],
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off",
+    "semi": ["error", "always"],
+    "quotes": [
+      "warn",
+      "double",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "all"
+      }
+    ]
+  }
 }
