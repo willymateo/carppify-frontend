@@ -7,6 +7,7 @@ import { setDriver } from "../redux/states/driver";
 import { pink, cyan } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
 import { VehicleForm } from "./VehicleForm";
+import { parseISO, format } from "date-fns";
 import { useState } from "react";
 import {
   Alert,
@@ -102,7 +103,9 @@ function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation
         <TableCell align="center">{model}</TableCell>
         <TableCell align="center">{type}</TableCell>
         <TableCell align="center">{capacity}</TableCell>
-        <TableCell align="center">{creation_date}</TableCell>
+        <TableCell align="center">
+          {format(parseISO(creation_date), "EEEE, MMMM d, yyyy")}
+        </TableCell>
         <TableCell align="center">
           <IconButton onClick={onClickEdit}>
             <EditIcon sx={{ color: cyan[500] }} />
