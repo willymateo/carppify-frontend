@@ -9,7 +9,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <Stack direction="row" justifyContent="space-around" alignItems="center">
+    <Stack direction="row" justifyContent="space-around" alignItems="center" marginY={5}>
       <Stack spacing={1} direction="row" justifyContent="center" alignItems="center">
         <Typography variant="h6" gutterBottom fontFamily="lobster">
           Carpiffy
