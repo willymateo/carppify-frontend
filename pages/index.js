@@ -1,18 +1,20 @@
 import { VehicleTableRow } from "../components/VehicleTableRow";
-import TableContainer from "@mui/material/TableContainer";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { useSelector } from "react-redux";
-import Table from "@mui/material/Table";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
+import {
+  Box,
+  Table,
+  Paper,
+  Stack,
+  TableRow,
+  TableBody,
+  TableCell,
+  Container,
+  TableHead,
+  Typography,
+  TableContainer,
+} from "@mui/material";
 
 export default function Home() {
   const { driver_id, vehicles } = useSelector(state => state.driver);

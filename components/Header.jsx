@@ -1,5 +1,4 @@
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+import { Typography, Stack } from "@mui/material";
 import { SearchBar } from "./SearchBar";
 import "@fontsource/lobster/400.css";
 

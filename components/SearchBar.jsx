@@ -1,18 +1,20 @@
-import DialogContentText from "@mui/material/DialogContentText";
 import RememberMeIcon from "@mui/icons-material/RememberMe";
-import InputAdornment from "@mui/material/InputAdornment";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import SearchIcon from "@mui/icons-material/Search";
 import { setDriver } from "../redux/states/driver";
 import { getAllVehicles } from "../services/driver";
-import TextField from "@mui/material/TextField";
-import { DialogTitle } from "@mui/material";
 import { useDispatch } from "react-redux";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import Stack from "@mui/material/Stack";
 import { useState } from "react";
+import {
+  Stack,
+  Button,
+  Dialog,
+  TextField,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  InputAdornment,
+  DialogContentText,
+} from "@mui/material";
 
 function SearchBar() {
   const dispatch = useDispatch();

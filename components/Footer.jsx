@@ -1,10 +1,8 @@
+import { Typography, IconButton, Stack } from "@mui/material";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import Stack from "@mui/material/Stack";
 import Link from "next/link";
 
 function Footer() {
