@@ -14,7 +14,7 @@ const editVehicle = async data =>
 
 const deleteVehicle = async vehile_id =>
   axiosCarppify
-    .post(`/vehicles/${vehile_id}`, data)
+    .delete(`/vehicles/${vehile_id}`)
     .then(({ data }) => data)
     .catch(errorHandler);
 

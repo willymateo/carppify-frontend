@@ -17,9 +17,11 @@ import { useState } from "react";
 function SearchBar() {
   const dispatch = useDispatch();
   const [driverId, setDriverId] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
   const hideErrorDialog = () => setIsVisibleError(false);
   const [isVisibleError, setIsVisibleError] = useState(false);
+
   const onChangeTextField = ({ target: { value } }) => setDriverId(value);
 
   const onClickSearch = async () => {
