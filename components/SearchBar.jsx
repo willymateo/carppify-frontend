@@ -1,7 +1,7 @@
+import { getAllVehicles, getDriverById } from "../services/driver";
 import RememberMeIcon from "@mui/icons-material/RememberMe";
 import SearchIcon from "@mui/icons-material/Search";
 import { setDriver } from "../redux/states/driver";
-import { getAllVehicles } from "../services/driver";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
@@ -28,12 +28,18 @@ function SearchBar() {
       setDialogStatus({ open: true, error: "Please enter a driver id" });
       return;
     }
+    const driver = await getDriverById(driverId);
+    if (driver.error) {
+      setDialogStatus({ open: true, error: driver.error });
+      return;
+    }
+
     const vehicles = await getAllVehicles(driverId);
     if (vehicles.error) {
       setDialogStatus({ open: true, error: vehicles.error });
       return;
     }
-    dispatch(setDriver({ id: driverId, vehicles }));
+    dispatch(setDriver({ ...driver, vehicles }));
   };
 
   return (

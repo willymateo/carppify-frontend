@@ -1,4 +1,5 @@
 import { VehicleTableRow } from "../components/VehicleTableRow";
+import { DriverInfoCard } from "../components/DriverInfoCard";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { useSelector } from "react-redux";
@@ -25,9 +26,10 @@ export default function Home() {
       <Box marginY={5}>
         {driver_id ? (
           <>
+            <DriverInfoCard />
             <Container>
               <Typography variant="h4" textAlign="center">
-                {`Vehicles of driver with ID: ${driver_id}`}
+                Vehicles Info
               </Typography>
             </Container>
 
