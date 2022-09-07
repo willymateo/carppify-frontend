@@ -24,7 +24,7 @@ function Header() {
   const showDialog = () => setIsDialogOpen(true);
   const vehicleData = useSelector(state => state.vehicle);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { driver_id } = useSelector(state => state.driver);
+  const { id: driver_id } = useSelector(state => state.driver);
   const hideSnackBar = () => setSnakBarStatus({ ...snackBarStatus, open: false });
 
   const [snackBarStatus, setSnakBarStatus] = useState({

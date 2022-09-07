@@ -33,7 +33,7 @@ function SearchBar() {
       setDialogStatus({ open: true, error: vehicles.error });
       return;
     }
-    dispatch(setDriver({ driver_id: driverId, vehicles }));
+    dispatch(setDriver({ id: driverId, vehicles }));
   };
 
   return (

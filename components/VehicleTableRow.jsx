@@ -23,7 +23,7 @@ import {
 
 function VehicleTableRow({ id, driver_id, plate, model, type, capacity, creation_date }) {
   const hideSnackBar = () => setSnakBarStatus({ ...snackBarStatus, open: false });
-  const { driver_id: driverIdRedux } = useSelector(state => state.driver);
+  const { id: driverIdRedux } = useSelector(state => state.driver);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const vehicleData = useSelector(state => state.vehicle);
   const dispatch = useDispatch();

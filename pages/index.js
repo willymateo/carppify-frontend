@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 export default function Home() {
-  const { driver_id, vehicles } = useSelector(state => state.driver);
+  const { id: driver_id, vehicles } = useSelector(state => state.driver);
 
   return (
     <Stack direction="column" justifyContent="space-between" flex={1} margin={2}>

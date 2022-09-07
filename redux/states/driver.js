@@ -1,7 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const emptyState = {
-  driver_id: null,
+  id: null,
+  city: null,
+  first_name: "",
+  last_name: "",
+  email: "",
+  phone: "",
+  avatar_url: "",
+  status: "",
+  creation_date: "",
+  company: {
+    id: null,
+    name: "",
+    city: null,
+    status: "",
+    plan_type: "",
+    creation_date: "",
+  },
   vehicles: [],
 };
 
