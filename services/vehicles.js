@@ -1,21 +1,21 @@
-import { axiosCarppify, errorHandlerSWR } from "./axios.config";
+import { axiosCarppify, errorHandler } from "./axios.config";
 
 const createVehicle = async data =>
   axiosCarppify
     .post("/vehicles", data)
     .then(({ data }) => data)
-    .catch(errorHandlerSWR);
+    .catch(errorHandler);
 
 const editVehicle = async data =>
   axiosCarppify
     .put(`/vehicles/${vehile_id}`, data)
     .then(({ data }) => data)
-    .catch(errorHandlerSWR);
+    .catch(errorHandler);
 
 const deleteVehicle = async vehile_id =>
   axiosCarppify
     .post(`/vehicles/${vehile_id}`, data)
     .then(({ data }) => data)
-    .catch(errorHandlerSWR);
+    .catch(errorHandler);
 
 export { createVehicle, editVehicle, deleteVehicle };
