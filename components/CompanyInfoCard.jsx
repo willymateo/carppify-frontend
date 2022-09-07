@@ -2,6 +2,7 @@ import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import TodayIcon from "@mui/icons-material/Today";
+import { parseISO, format } from "date-fns";
 import { useSelector } from "react-redux";
 
 function CompanyInfoCard() {
@@ -35,7 +36,7 @@ function CompanyInfoCard() {
       <Stack direction="row" spacing={2} alignItems="center">
         <TodayIcon />
         <Typography variant="body2" color="text.secondary">
-          Created At: {company.creation_date}
+          Created At: {format(parseISO(company.creation_date), "EEEE, MMMM d, yyyy")}
         </Typography>
       </Stack>
     </Box>

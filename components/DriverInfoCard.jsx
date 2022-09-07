@@ -2,9 +2,10 @@ import { Avatar, Box, Card, CardContent, Chip, Stack, Typography } from "@mui/ma
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-import TodayIcon from "@mui/icons-material/Today";
-import { useSelector } from "react-redux";
 import { CompanyInfoCard } from "./CompanyInfoCard";
+import TodayIcon from "@mui/icons-material/Today";
+import { parseISO, format } from "date-fns";
+import { useSelector } from "react-redux";
 
 function DriverInfoCard() {
   const driver = useSelector(state => state.driver);
@@ -56,7 +57,7 @@ function DriverInfoCard() {
             <Stack direction="row" spacing={2} alignItems="center">
               <TodayIcon />
               <Typography variant="body2" color="text.secondary">
-                Created At: {driver.creation_date}
+                Created At: {format(parseISO(driver.creation_date), "EEEE, MMMM d, yyyy")}
               </Typography>
             </Stack>
           </Box>
