@@ -18,6 +18,8 @@ const emptyState = {
     plan_type: "",
     creation_date: "",
   },
+  num_vehicles: 0,
+  offset: 0,
   vehicles: [],
 };
 

@@ -6,9 +6,14 @@ const getDriverById = async driver_id =>
     .then(({ data }) => data)
     .catch(errorHandler);
 
-const getAllVehicles = async driver_id =>
+const getAllVehicles = async ({ driver_id, offset, limit }) =>
   axiosCarppify
-    .get(`/driver/${driver_id}/vehicles`)
+    .get(`/driver/${driver_id}/vehicles`, {
+      params: {
+        offset,
+        limit,
+      },
+    })
     .then(({ data }) => data)
     .catch(errorHandler);
 

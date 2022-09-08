@@ -18,6 +18,7 @@ import {
   CssBaseline,
   TableContainer,
 } from "@mui/material";
+import { TableControllers } from "../components/TableControllers";
 
 export default function Home() {
   const { id: driver_id, vehicles } = useSelector(state => state.driver);
@@ -65,6 +66,7 @@ export default function Home() {
                   </TableBody>
                 </Table>
               </TableContainer>
+              <TableControllers />
             </>
           ) : (
             <Typography variant="h4" textAlign="center">

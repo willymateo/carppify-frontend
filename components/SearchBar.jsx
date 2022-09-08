@@ -34,12 +34,13 @@ function SearchBar() {
       return;
     }
 
-    const vehicles = await getAllVehicles(driverId);
-    if (vehicles.error) {
-      setDialogStatus({ open: true, error: vehicles.error });
+    const res = await getAllVehicles({ driver_id: driverId, offset: 0, limit: 5 });
+    if (res.error) {
+      setDialogStatus({ open: true, error: res.error });
       return;
     }
-    dispatch(setDriver({ ...driver, vehicles }));
+    const { rows: vehicles, count: num_vehicles } = res;
+    dispatch(setDriver({ ...driver, vehicles, num_vehicles }));
   };
 
   return (
